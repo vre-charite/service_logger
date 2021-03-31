@@ -1,3 +1,1 @@
 # service_logger
-
-test
