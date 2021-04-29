@@ -2,20 +2,25 @@ import logging
 import os, os.path
 import sys
 from .formatter import formatter_factory
+from logging.handlers import TimedRotatingFileHandler
 
 
-class SrvLoggerFactory():
+class SrvLoggerFactory:
     def __init__(self, name):
         self.my_formatter = formatter_factory()
         if not os.path.exists("./logs/"):
             os.makedirs("./logs/")
         self.name = name
+
     def get_logger(self):
         logger = logging.getLogger(self.name)
         logger.setLevel(logging.DEBUG)
         if not logger.handlers:
             # File Handler
-            handler = logging.FileHandler("logs/{}.log".format(self.name))
+            handler = TimedRotatingFileHandler("logs/{}.log".format(self.name),
+                                               when='D',
+                                               interval=1,
+                                               backupCount=2)
             handler.setFormatter(self.my_formatter)
             handler.setLevel(logging.DEBUG)
             # Standard Out Handler
@@ -31,4 +36,3 @@ class SrvLoggerFactory():
             logger.addHandler(stdout_handler)
             logger.addHandler(stderr_handler)
         return logger
-
