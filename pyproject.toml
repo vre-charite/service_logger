@@ -1,0 +1,45 @@
+// Copyright 2022 Indoc Research
+// 
+// Licensed under the EUPL, Version 1.2 or – as soon they
+// will be approved by the European Commission - subsequent
+// versions of the EUPL (the "Licence");
+// You may not use this work except in compliance with the
+// Licence.
+// You may obtain a copy of the Licence at:
+// 
+// https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+// 
+// Unless required by applicable law or agreed to in
+// writing, software distributed under the Licence is
+// distributed on an "AS IS" basis,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+// express or implied.
+// See the Licence for the specific language governing
+// permissions and limitations under the Licence.
+// 
+
+[tool.poetry]
+name = "logger"
+version = "0.1.0"
+description = "Package for configuring and writing logs."
+authors = ["Indoc Research"]
+packages = [
+    { include = "logger" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+python-json-logger = "0.1.11"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.4"
+pytest-cov = "^2.11.1"
+Faker = "^9.8.0"
+
+[tool.pytest.ini_options]
+testpaths = "tests"
+addopts = "--cov logger --cov-report term"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
